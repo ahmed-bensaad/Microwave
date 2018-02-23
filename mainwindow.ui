@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="start">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -27,7 +27,7 @@
      <string>Start</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="stop">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -40,7 +40,7 @@
      <string>Stop</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="auto_menu">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -53,7 +53,7 @@
      <string>Auto Menu</string>
     </property>
    </widget>
-   <widget class="QDial" name="Dial">
+   <widget class="QDial" name="dial">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -63,7 +63,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="defrost">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -76,7 +76,7 @@
      <string>Defrost</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="mode">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -89,12 +89,12 @@
      <string>Mode</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="power">
     <property name="geometry">
      <rect>
       <x>240</x>
       <y>80</y>
-      <width>161</width>
+      <width>81</width>
       <height>22</height>
      </rect>
     </property>
@@ -102,13 +102,26 @@
      <string>Power</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QPushButton" name="clock">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>320</x>
+      <y>80</y>
+      <width>81</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clock</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="screen">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
       <y>40</y>
-      <width>161</width>
-      <height>41</height>
+      <width>121</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -122,7 +135,7 @@
      <x>0</x>
      <y>0</y>
      <width>401</width>
-     <height>19</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
