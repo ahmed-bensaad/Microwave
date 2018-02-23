@@ -49,6 +49,7 @@ void MainWindow::modeSet()
     case WAVE_GRILL: mode = WAVE; break;
     default: mode = WAVE;
     }
+    ui->screen->setText(QString::number(mode));
 }
 
 
@@ -63,7 +64,8 @@ void MainWindow::initStateMachine(QStateMachine * stateM){
     clockHourState->addTransition(ui->clock,  SIGNAL(clicked()),  clockMinState);
     clockMinState->addTransition(ui->clock,   SIGNAL(clicked()),  idleState);
     powerSetState->addTransition(ui->power,   SIGNAL(clicked()),  timeSetState);
-    modeSetState->addTransition(ui->mode,     SIGNAL(clicked()),  timeSetState);
+    modeSetState->addTransition(ui->mode,     SIGNAL(clicked()),  modeSetState);
+    modeSetState->addTransition(ui->dial,     SIGNAL(valueChanged(int)),  timeSetState);
     timeSetState->addTransition(ui->start,    SIGNAL(clicked()),  cookingState);
     defrostState->addTransition(ui->start,    SIGNAL(clicked()),  cookingState);
     cookingState->addTransition(&timer,       SIGNAL(timeout()),  idleState);
