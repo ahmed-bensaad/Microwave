@@ -126,15 +126,15 @@ void MainWindow::idle(){
 }
 
 void MainWindow::clockHour(){
-    int newVal = 24 * ui->dial->value() / ui->dial->maximum();
-    ui->dial->setRange(0, 24);
+    int newVal = 23 * ui->dial->value() / ui->dial->maximum();
+    ui->dial->setRange(0, 23);
     ui->dial->setValue(newVal);
     ui->screen->setText(QString::number(ui->dial->value()));
 }
 
 void MainWindow::clockMin(){
-    int newVal = 60 * ui->dial->value() / ui->dial->maximum();
-    ui->dial->setRange(0, 60);
+    int newVal = 59 * ui->dial->value() / ui->dial->maximum();
+    ui->dial->setRange(0, 59);
     ui->dial->setValue(newVal);
     ui->screen->setText(QString::number(ui->dial->value()));
 }
