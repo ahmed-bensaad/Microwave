@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStateMachine>
+#include <QState>
 #include <QTimer>
 
 
@@ -23,6 +24,16 @@ public:
     void reset();
     void changeMode();
     ~MainWindow();
+    QState * stopGroup = new QState();
+    QState * idleState = new QState(stopGroup);
+    QState * clockHourState = new QState(stopGroup);
+    QState * clockMinState = new QState(stopGroup);
+    QState * powerSetState = new QState(stopGroup);
+    QState * modeSetState = new QState(stopGroup);
+    QState * timeSetState = new QState(stopGroup);
+    QState * defrostState = new QState(stopGroup);
+    QState * cookingState = new QState(stopGroup);
+
 
 private:
     Ui::MainWindow *ui;
