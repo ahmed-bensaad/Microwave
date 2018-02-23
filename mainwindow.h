@@ -5,6 +5,7 @@
 #include <QStateMachine>
 #include <QState>
 #include <QTimer>
+#include <QElapsedTimer>
 
 
 enum Mode {WAVE, GRILL, WAVE_GRILL};
@@ -42,8 +43,10 @@ private:
     int hours;
     int minutes;
     int ratio;
-    QTimer timer;
+    QTimer timer,secondTimer;
     Mode mode;
+    QElapsedTimer elapsedTimer;
+
 
 private slots:
     //enter states
@@ -66,6 +69,8 @@ private slots:
     void defrostExit();
     void cookingExit();
 
+    void currentTime();
+    void addTime();
 
 
 

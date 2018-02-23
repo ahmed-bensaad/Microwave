@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QElapsedTimer>
 #include <QTime>
-
+#include <math.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -26,7 +26,7 @@ void MainWindow::init()
     *time=time->currentTime();
     hours=time->hour();
     minutes=time->minute();
-    ratio = 0;
+    ratio = 1;
     mode = WAVE;
     reset();
 }
@@ -35,6 +35,9 @@ void MainWindow::reset()
 {
     power = 100;
     duration = 60;
+    timer.stop();
+    secondTimer.stop();
+
 }
 
 void MainWindow::modeSet()
@@ -85,9 +88,11 @@ void MainWindow::initStateMachine(QStateMachine * stateM){
     connect(timeSetState,    SIGNAL(exited()),  this, SLOT(timeSetExit()));
     connect(defrostState,    SIGNAL(exited()),  this, SLOT(defrostExit()));
     connect(&timer,          SIGNAL(timeout()), this, SLOT(cookingExit()));
+    connect(&secondTimer,    SIGNAL(timeout()), this, SLOT(currentTime()));
 
 
     connect(ui->dial,SIGNAL(valueChanged(int)),SLOT(onDialChanged(int)));
+    connect(ui->start,SIGNAL(clicked()),this,SLOT(addTime()));
 
 }
 
@@ -159,14 +164,31 @@ void MainWindow::defrost(){
     ui->dial->setValue(newVal);
     ui->screen->setText(QString::number(ratio * ui->dial->value()));
 }
+
 void MainWindow::cookingStart(){
     timer.start(duration*1000);
-    QElapsedTimer timer1;
-    timer1.start();
+    timer.setInterval(duration*1000);
+    elapsedTimer.restart();
+    secondTimer.start(duration*1000);
+    secondTimer.setInterval(1000);
     ui->dial->setDisabled(true);
 
 }
-void MainWindow::cookingExit(){
-    timer.stop();
 
+void MainWindow::cookingExit(){
+    reset();
+
+}
+
+void MainWindow::currentTime(){
+    ui->screen->setText(QString::number(duration-elapsedTimer.elapsed()/1000));
+}
+
+void MainWindow::addTime(){
+    if (cookingState->active()){
+        duration=duration-elapsedTimer.elapsed()/1000 + 60;
+        timer.stop();
+        timer.start(duration*1000);
+        elapsedTimer.restart();
+    }
 }
